@@ -1,14 +1,32 @@
-# HeritageAI
+<!-- PROJECT LOGO -->
+<!-- <p align="center">
+  <img src="https://placehold.co/120x120?text=Logo" alt="HeritageAI Logo" width="120" height="120">
+</p> -->
 
-## Overview
+<h1 align="center">HeritageAI</h1>
 
-**HeritageAI** is an AI-powered platform for generating, analyzing, and exporting culturally-inspired design assets. It leverages advanced AI models (including Google Gemini and CLIP) to create patterns, color palettes, design briefs, and metadata for various world cultures. The project provides both a command-line interface (CLI) and a web API/UI for users to interact with the system.
+<p align="center">
+  <b>AI-powered platform for generating, analyzing, and exporting culturally-inspired design assets</b><br>
+  <i>Patterns, palettes, briefs, and more — for any culture, powered by Google Gemini & CLIP</i>
+  <br><br>
+  <a href="#features">Features</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#api-endpoints">API</a> •
+  <a href="#extending-the-project">Extending</a> •
+  <a href="#dependencies">Dependencies</a>
+</p>
 
 ---
 
-## Project Structure
+## 🚀 Overview
 
-```
+HeritageAI is a modern toolkit for designers, developers, and creators to generate authentic, culturally-inspired design assets using advanced AI models. Instantly create patterns, color palettes, design briefs, and more for any culture — with both a beautiful web UI and a powerful CLI.
+
+---
+
+## 🗂️ Project Structure
+
+```text
 heritage-ai/
 │
 ├── mvp_ai/
@@ -28,138 +46,107 @@ heritage-ai/
 
 ---
 
-## Key Features
+## ✨ Features
 
-### 1. Pattern and Palette Generation
-- Generate culturally-inspired pattern images using AI.
-- Extract color palettes from generated or uploaded images.
-
-### 2. AI-Powered Analysis
-- Analyze images to extract:
-  - Fonts that match the cultural style
-  - Key design elements and motifs
-  - Color palettes
-  - Pattern descriptions
-  - Comprehensive design briefs
-
-### 3. Bundling and Export
-- Bundle images, palettes, and notes into a single kit.
-- Export kits in multiple formats (SVG, PNG, CSS, JSON, Figma, Canva).
-
-### 4. Web API and UI
-- Flask-based web interface for generating and downloading design kits.
-- RESTful API endpoints for integration and automation.
-
-### 5. CLI Tools
-- Command-line tools for batch processing, analysis, and export.
+| Feature                        | Description                                                                 |
+|--------------------------------|-----------------------------------------------------------------------------|
+| 🎨 Pattern Generation          | Generate culturally-inspired pattern images using AI                         |
+| 🌈 Color Palette Extraction    | Extract color palettes from generated or uploaded images                     |
+| 🤖 AI-Powered Analysis         | Analyze images for fonts, motifs, colors, patterns, and design briefs        |
+| 📦 Bundling & Export           | Bundle images, palettes, and notes; export in SVG, PNG, CSS, JSON, Figma... |
+| 🖥️ Web UI & REST API           | Modern Flask web interface and RESTful API                                   |
+| 🛠️ CLI Tools                   | Command-line tools for batch processing, analysis, and export                |
+| 🔄 Multi-API Key Support        | Robust retry logic with automatic Gemini API key rotation                    |
+| 📝 Professional Codebase        | Type hints, docstrings, and logging throughout                               |
 
 ---
 
-## Main Components
+## 🏗️ Main Components
 
-### `main.py` (CLI & Orchestration)
-- Provides CLI commands for:
-  - Generating patterns and palettes
-  - Extracting palettes from images
-  - Generating cultural notes
-  - Bundling assets
-  - Scoring images with CLIP
-  - Generating complete design kits
-  - Generating culture metadata via AI analysis
-- Handles orchestration and logging.
-
-### `ai_culture_generator.py` (AI Analysis)
-- `AICultureGenerator` class:
-  - Uses Gemini API to analyze images and extract:
-    - Fonts
-    - Design elements
-    - Colors
-    - Patterns
-    - Design briefs
-  - Provides fallback values if AI analysis fails.
-  - Exposes a single method to generate comprehensive metadata for a culture and image.
-
-### `web_api.py` (Web API & UI)
-- Flask app with:
-  - Web UI for generating and downloading kits for preset or custom cultures.
-  - API endpoints:
-    - `/api/generate-kit` (POST): Generate a design kit for a culture.
-    - `/api/download-kit/<culture>` (GET): Download a zipped kit.
-    - `/api/cultures` (GET): List available cultures.
-    - `/api/clip-score` (POST): Score images with CLIP.
-    - `/api/generate-culture-metadata` (POST): Generate metadata for a culture/image.
-- Simple, modern UI using the Nunito font.
-
-### Supporting Modules
-- `clip_model.py`: Handles image scoring using CLIP.
-- `gemini_client.py`: Handles communication with the Gemini API.
-- `imagegen_gemini.py`: Generates pattern images using Gemini.
-- `color_palette.py`: Extracts color palettes from images.
-- `export_formats.py`: Exports assets in various formats.
-- `gemini_notes.py`: Generates cultural notes using Gemini.
+- **`main.py`** — CLI for all major operations (generation, analysis, export)
+- **`ai_culture_generator.py`** — AI-powered image analysis for culture metadata
+- **`web_api.py`** — Flask web UI & API endpoints
+- **Supporting modules:**
+  - `clip_model.py`, `gemini_client.py`, `imagegen_gemini.py`, `color_palette.py`, `export_formats.py`, `gemini_notes.py`
 
 ---
 
-## Usage
+## 💻 Usage
 
-### CLI
-
-Run the CLI for various tasks (examples):
+### CLI (Command Line)
 
 ```bash
+# Generate pattern images
 python -m mvp_ai.main generate --culture yoruba --count 3 --aspect-ratio 1:1
-python -m mvp_ai.main palette
-python -m mvp_ai.main brief
-python -m mvp_ai.main bundle
-python -m mvp_ai.main clip-score --prompt "Yoruba textile pattern"
+
+# Generate a complete design kit
 python -m mvp_ai.main generate-kit --culture edo
+
+# Extract color palettes
+python -m mvp_ai.main palette
+
+# Generate cultural briefs
+python -m mvp_ai.main brief
+
+# Score images with CLIP
+python -m mvp_ai.main clip-score --prompt "Yoruba textile pattern"
+
+# Generate AI-powered culture metadata from an image
 python -m mvp_ai.main generate-culture-metadata --culture maori --image path/to/image.png
 ```
 
-### Web UI
+### 🌐 Web UI
 
-1. Start the Flask server:
+1. **Start the server:**
    ```bash
    python -m mvp_ai.web_api
    ```
-2. Open your browser to `http://localhost:5000`
-3. Use the UI to generate and download design kits.
-
-### API Endpoints
-
-- `POST /api/generate-kit` with `{ "culture": "yoruba" }`
-- `GET /api/download-kit/yoruba`
-- `GET /api/cultures`
-- `POST /api/clip-score` with `{ "prompt": "..." }`
-- `POST /api/generate-culture-metadata` with `{ "culture": "...", "image": "..." }`
+2. **Open your browser:** [http://localhost:5000](http://localhost:5000)
+3. **Generate & download kits** for any culture with a click!
 
 ---
 
-## Extending the Project
+## 🔗 API Endpoints
 
-- Add new cultures by updating the UI or using the CLI/API with a new culture name.
-- Integrate with other AI models by extending `gemini_client.py` or adding new modules.
-- Add new export formats in `export_formats.py`.
+| Endpoint                              | Method | Description                                 |
+|----------------------------------------|--------|---------------------------------------------|
+| `/api/generate-kit`                    | POST   | Generate a design kit for a culture         |
+| `/api/download-kit/&lt;culture&gt;`         | GET    | Download a zipped kit                       |
+| `/api/cultures`                        | GET    | List available cultures                     |
+| `/api/clip-score`                      | POST   | Score images with CLIP                      |
+| `/api/generate-culture-metadata`       | POST   | Generate metadata for a culture/image       |
 
 ---
 
-## Dependencies
+## 🧩 Extending the Project
+
+- Add new cultures by using the UI or CLI/API with a new culture name
+- Integrate other AI models by extending `gemini_client.py`
+- Add new export formats in `export_formats.py`
+
+---
+
+## ⚙️ Dependencies
 
 - Python 3.x
 - Flask
 - Gemini API (Google)
 - CLIP model
 - Pillow, ColorThief (for image and color processing)
-- Other dependencies listed in `mvp_ai/requirements.txt`
+- See `mvp_ai/requirements.txt` for full list
 
 ---
 
-## Assets
+## 📁 Assets
 
-- All generated images, palettes, notes, and kits are stored in the `mvp_ai/assets/` directory.
+All generated images, palettes, notes, and kits are stored in:
+```
+mvp_ai/assets/
+```
 
 ---
+---
 
-## License & Credits
-
-(Add your license and credits here.) 
+<p align="center">
+  <b>Made with ❤️ for cultural creativity</b>
+</p> 
