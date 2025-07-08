@@ -1,0 +1,9 @@
+torch
+torchvision
+openai-clip
+torchvision
+transformers
+requests
+flask
+open-clip-torch
+flask 

@@ -1,0 +1,90 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Pytest
+.cache
+
+# Flask
+instance/
+.webassets-cache
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Environment variables / API keys
+.env
+.env.*
+*.env
+client_secret.json
+
+# Data, models, and assets (generated or large files)
+mvp_ai/assets/
+*.h5
+*.ckpt
+*.pth
+*.pt
+*.pkl
+*.joblib
+
+# Ignore PDF and other large docs
+*.pdf
+
+# Ignore test outputs
+*.out
+*.test
+
+# Ignore coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Ignore system files
+*.swp
+*.swo 
